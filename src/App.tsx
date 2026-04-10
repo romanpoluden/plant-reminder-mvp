@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { ExportButton } from './components/ExportButton'
 import { PlantCard } from './components/PlantCard'
 import { PlantForm } from './components/PlantForm'
 import { TaskGroups } from './components/TaskGroups'
@@ -42,10 +43,15 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="app-title">Plant care reminders</h1>
-        <p className="app-tagline">
-          Track watering and fertilizing — runs locally in your browser.
-        </p>
+        <div className="app-header-row">
+          <div className="app-header-text">
+            <h1 className="app-title">Plant care reminders</h1>
+            <p className="app-tagline">
+              Track watering and fertilizing — runs locally in your browser.
+            </p>
+          </div>
+          <ExportButton plants={plants} />
+        </div>
       </header>
 
       <main className="app-main">

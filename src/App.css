@@ -9,6 +9,24 @@
   margin-bottom: 2rem;
 }
 
+.app-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.app-header-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.app-header-row .btn {
+  flex-shrink: 0;
+  align-self: center;
+}
+
 .app-title {
   font-size: 1.5rem;
   letter-spacing: -0.02em;
@@ -75,6 +93,15 @@
 
 .btn:hover {
   border-color: var(--accent);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  border-color: var(--border);
 }
 
 .btn.primary {
