@@ -40,6 +40,15 @@ function App() {
     setEditingId(null)
   }
 
+  function confirmRemovePlant(id: string) {
+    const plant = plants.find((p) => p.id === id)
+    if (!plant) return
+    const ok = globalThis.confirm(
+      `Remove "${plant.name}"? This cannot be undone.`,
+    )
+    if (ok) removePlant(id)
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -59,7 +68,13 @@ function App() {
           <h2 id="tasks-heading" className="region-title">
             Tasks
           </h2>
-          <TaskGroups groups={taskGroups} />
+          {plants.length === 0 ? (
+            <p className="region-placeholder">
+              Add a plant to see overdue, due today, and upcoming care tasks.
+            </p>
+          ) : (
+            <TaskGroups groups={taskGroups} />
+          )}
         </section>
 
         <section className="region" aria-labelledby="plants-heading">
@@ -96,7 +111,7 @@ function App() {
                   <PlantCard
                     plant={p}
                     onEdit={openEdit}
-                    onDelete={removePlant}
+                    onDelete={confirmRemovePlant}
                     onWater={markWatered}
                     onFertilize={markFertilized}
                   />

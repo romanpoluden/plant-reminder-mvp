@@ -213,6 +213,7 @@
 .plant-card-name {
   font-size: 1rem;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .plant-card-pot {

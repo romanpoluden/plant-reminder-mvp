@@ -10,7 +10,10 @@ export function ExportButton({ plants }: Props) {
 
   function handleClick() {
     const ics = buildPlantRemindersIcs(plants)
-    if (!ics) return
+    if (!ics) {
+      globalThis.alert('Could not create the calendar file. Please try again.')
+      return
+    }
     downloadTextFile('plant-care-reminders.ics', ics)
   }
 

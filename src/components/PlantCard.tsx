@@ -36,22 +36,34 @@ export function PlantCard({
         </div>
       </dl>
       <div className="plant-card-actions">
-        <button type="button" className="btn small" onClick={() => onWater(plant.id)}>
+        <button
+          type="button"
+          className="btn small"
+          aria-label={`Mark ${plant.name} as watered today`}
+          onClick={() => onWater(plant.id)}
+        >
           Watered
         </button>
         <button
           type="button"
           className="btn small"
+          aria-label={`Mark ${plant.name} as fertilized today`}
           onClick={() => onFertilize(plant.id)}
         >
           Fertilized
         </button>
-        <button type="button" className="btn small" onClick={() => onEdit(plant)}>
+        <button
+          type="button"
+          className="btn small"
+          aria-label={`Edit ${plant.name}`}
+          onClick={() => onEdit(plant)}
+        >
           Edit
         </button>
         <button
           type="button"
           className="btn small danger"
+          aria-label={`Delete ${plant.name}`}
           onClick={() => onDelete(plant.id)}
         >
           Delete
