@@ -3,6 +3,8 @@ export type IsoDateString = string
 
 export type Plant = {
   id: string
+  /** Set when the plant was added from the Perenual catalog. */
+  perenualId?: number
   name: string
   /** Display / filter helper (e.g. cm or label). */
   potSize: string

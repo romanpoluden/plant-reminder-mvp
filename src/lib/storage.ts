@@ -21,6 +21,7 @@ function coercePlant(raw: unknown): Plant | null {
   const fertilizingIntervalDays = raw.fertilizingIntervalDays
   const lastWateredDate = raw.lastWateredDate
   const lastFertilizedDate = raw.lastFertilizedDate
+  const perenualIdRaw = raw.perenualId
 
   if (typeof id !== 'string' || typeof name !== 'string') return null
   if (typeof potSize !== 'string') return null
@@ -38,7 +39,14 @@ function coercePlant(raw: unknown): Plant | null {
       ? lastFertilizedDate
       : null
 
-  return {
+  const perenualId =
+    typeof perenualIdRaw === 'number' &&
+    Number.isFinite(perenualIdRaw) &&
+    perenualIdRaw > 0
+      ? perenualIdRaw
+      : undefined
+
+  const plant: Plant = {
     id,
     name,
     potSize,
@@ -47,6 +55,8 @@ function coercePlant(raw: unknown): Plant | null {
     lastWateredDate: lw,
     lastFertilizedDate: lf,
   }
+  if (perenualId !== undefined) plant.perenualId = perenualId
+  return plant
 }
 
 export function loadPlants(): Plant[] {

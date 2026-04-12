@@ -1,9 +1,14 @@
 import { useMemo, useState } from 'react'
 import { CalendarExportCard } from './components/CalendarExport'
+import { PerenualCatalog } from './components/PerenualCatalog'
 import { PlantCard } from './components/PlantCard'
 import { PlantForm } from './components/PlantForm'
 import { TaskGroups } from './components/TaskGroups'
 import { usePlants } from './hooks/usePlants'
+import {
+  speciesDisplayName,
+  type PerenualSpeciesSummary,
+} from './lib/perenual'
 import { groupTasksByBucket } from './lib/schedule'
 import './App.css'
 
@@ -49,6 +54,24 @@ function App() {
     if (ok) removePlant(id)
   }
 
+  function addFromCatalog(s: PerenualSpeciesSummary) {
+    if (plants.some((p) => p.perenualId === s.id)) {
+      globalThis.alert(
+        `${speciesDisplayName(s)} is already in your plants.`,
+      )
+      return
+    }
+    addPlant({
+      name: speciesDisplayName(s),
+      potSize: '—',
+      wateringIntervalDays: 7,
+      fertilizingIntervalDays: 30,
+      lastWateredDate: null,
+      lastFertilizedDate: null,
+      perenualId: s.id,
+    })
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -74,6 +97,17 @@ function App() {
           )}
         </section>
 
+        <section className="region" aria-labelledby="catalog-heading">
+          <h2 id="catalog-heading" className="region-title">
+            Plant catalog
+          </h2>
+          <p className="region-placeholder region-placeholder-tight">
+            Search Perenual’s database and add a plant to your list with default
+            care intervals (you can edit it afterward).
+          </p>
+          <PerenualCatalog onAdd={addFromCatalog} />
+        </section>
+
         <section className="region" aria-labelledby="plants-heading">
           <div className="region-toolbar">
             <h2 id="plants-heading" className="region-title inline">
@@ -91,8 +125,16 @@ function App() {
               key={editingPlant?.id ?? 'new'}
               initial={editingPlant}
               onSave={(data, existingId) => {
-                if (existingId) updatePlant({ ...data, id: existingId })
-                else addPlant(data)
+                if (existingId) {
+                  const prev = plants.find((p) => p.id === existingId)
+                  updatePlant({
+                    ...data,
+                    id: existingId,
+                    ...(prev?.perenualId != null
+                      ? { perenualId: prev.perenualId }
+                      : {}),
+                  })
+                } else addPlant(data)
                 closeForm()
               }}
               onCancel={closeForm}

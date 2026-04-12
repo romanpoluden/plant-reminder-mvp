@@ -16,6 +16,8 @@ npm run dev
 
 Open the URL Vite prints (usually `http://localhost:5173/`).
 
+**Plant catalog (optional):** copy `.env.example` to `.env.local`, set `VITE_PERENUAL_API_KEY` from [Perenual](https://perenual.com/user/developer), then restart `npm run dev`. The key is embedded in the client bundle (fine for learning; use a proxy for production).
+
 ## Scripts
 
 | Command       | Purpose              |
@@ -31,5 +33,6 @@ Open the URL Vite prints (usually `http://localhost:5173/`).
 - Task lists: **overdue**, **due today**, **upcoming** (water + fertilize)
 - Mark **watered** or **fertilized** (sets date to today)
 - **Download calendar file (.ics)** — import into Apple/Google Calendar or Outlook (not push notifications)
+- **Perenual catalog** — search and add plants with default intervals (optional API key in `.env.local`)
 
-Constraints for this MVP: no routing library, no UI framework, no external APIs.
+Constraints for this MVP: no routing library, no UI framework, no backend.
