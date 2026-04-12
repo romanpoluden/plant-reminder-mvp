@@ -30,6 +30,6 @@ Open the URL Vite prints (usually `http://localhost:5173/`).
 - Add / edit / delete plants (name, pot size, intervals, last watered / fertilized)
 - Task lists: **overdue**, **due today**, **upcoming** (water + fertilize)
 - Mark **watered** or **fertilized** (sets date to today)
-- **Export .ics** with the next water and fertilize date per plant
+- **Download calendar file (.ics)** — import into Apple/Google Calendar or Outlook (not push notifications)
 
 Constraints for this MVP: no routing library, no UI framework, no external APIs.

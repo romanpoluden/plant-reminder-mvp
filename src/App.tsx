@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ExportButton } from './components/ExportButton'
+import { CalendarExportCard } from './components/CalendarExport'
 import { PlantCard } from './components/PlantCard'
 import { PlantForm } from './components/PlantForm'
 import { TaskGroups } from './components/TaskGroups'
@@ -52,15 +52,10 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <div className="app-header-row">
-          <div className="app-header-text">
-            <h1 className="app-title">Plant care reminders</h1>
-            <p className="app-tagline">
-              Track watering and fertilizing — runs locally in your browser.
-            </p>
-          </div>
-          <ExportButton plants={plants} />
-        </div>
+        <h1 className="app-title">Plant care reminders</h1>
+        <p className="app-tagline">
+          Track watering and fertilizing — runs locally in your browser.
+        </p>
       </header>
 
       <main className="app-main">
@@ -68,9 +63,11 @@ function App() {
           <h2 id="tasks-heading" className="region-title">
             Tasks
           </h2>
+          <CalendarExportCard plants={plants} />
           {plants.length === 0 ? (
-            <p className="region-placeholder">
-              Add a plant to see overdue, due today, and upcoming care tasks.
+            <p className="region-placeholder region-placeholder-tight">
+              Add a plant to see overdue, due today, and upcoming care tasks — and
+              to download calendar reminders above.
             </p>
           ) : (
             <TaskGroups groups={taskGroups} />

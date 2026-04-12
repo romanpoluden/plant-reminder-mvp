@@ -9,24 +9,6 @@
   margin-bottom: 2rem;
 }
 
-.app-header-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.app-header-text {
-  flex: 1 1 12rem;
-  min-width: 0;
-}
-
-.app-header-row .btn {
-  flex-shrink: 0;
-  align-self: center;
-}
-
 .app-title {
   font-size: 1.5rem;
   letter-spacing: -0.02em;
@@ -79,6 +61,44 @@
   margin: 0;
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+.region-placeholder-tight {
+  margin-top: 0.75rem;
+}
+
+.calendar-export {
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
+}
+
+.calendar-export-title {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-heading);
+}
+
+.calendar-export-body {
+  margin: 0 0 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.calendar-export-btn {
+  width: 100%;
+  max-width: 22rem;
+  justify-content: center;
+}
+
+.calendar-export-note {
+  margin: 0.65rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
 .btn {
